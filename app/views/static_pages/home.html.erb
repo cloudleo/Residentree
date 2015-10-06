@@ -1,0 +1,20 @@
+<center>
+  
+  <div class="starter-template">
+    
+    <h1>Residentree</h1>
+    
+    <p class="lead">
+      Review, find, and talk about your building!
+    </p>
+    
+    <p>
+      <%= form_tag("/buildings") do %>
+      <%= label_tag('building[address]', "Address") %>
+      <%= text_field_tag('building[address]') %>
+      <%= submit_tag "Submit" %>
+      <% end %>
+    </p>
+
+  </div>
+</center>
