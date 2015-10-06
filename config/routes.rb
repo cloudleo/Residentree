@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  
+  resources :buildings
+
+  # root
+  root to: 'static_pages#home'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

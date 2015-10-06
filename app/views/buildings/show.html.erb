@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @building.address %>
+</p>
+
+<p>
+  <strong>Rating </strong>
+  <% if @building.rating_count.nil? or @building.rating_count < 1 %>
+   Rating Not Available 
+  <% else %>
+  <%= (@building.rating_sum.to_f / @building.rating_count).round(2) %>
+  <% end %>
+</p>
+
+</br> 
+
+<%= link_to 'Back', buildings_path %>
+
+</br></br>
+
+<%= form_for(@building) do |f| %>
+	<strong>Rate this building: </strong>
+  <%= radio_button_tag(:rating, "1") %>
+  <%= label_tag(:rating, "1") %>
+    <%= radio_button_tag(:rating, "2") %>
+  <%= label_tag(:rating, "2") %>
+    <%= radio_button_tag(:rating, "3") %>
+  <%= label_tag(:rating, "3") %>
+    <%= radio_button_tag(:rating, "4") %>
+  <%= label_tag(:rating, "4") %>
+    <%= radio_button_tag(:rating, "5") %>
+  <%= label_tag(:rating, "5") %>
+
+
+  <div class="actions">
+    <%= f.submit "Rate"%>
+  </div>
+<% end %>
