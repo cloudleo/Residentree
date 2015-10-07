@@ -14,16 +14,19 @@ class BuildingsController < ApplicationController
   def create
 
     @address = building_params["address"]
+    @borough = building_params["borough"]
 
-    # user did not enter anything in this field
-    if @address.empty?
+    borough_true = true if (@borough == "Brooklyn" or @borough == "Bronx" or @borough == "Manhattan" or @borough == "Queens" or @borough == "Staten Island") 
+
+    if @address.empty? or !borough_true
+      # user did not enter anything in this field
       redirect_to ('/')
       # Need to return an error message
-      # Need to check if it exist
     else
+      # Need to check if it exist
       # building exists in our system
       
-      if !(@building = Building.find_by address: @address).nil?
+      if (!(@building = Building.find_by address: @address).nil? and @building.borough == @borough)
         # load building page
         redirect_to @building
       else
@@ -67,6 +70,6 @@ class BuildingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def building_params
-      params.require(:building).permit(:address)
+      params.require(:building).permit(:address, :borough)
     end
 end

@@ -4,8 +4,12 @@
   <strong>Address:</strong>
   <%= @building.address %>
 </p>
+<p>
+  <strong>Borough:</strong>
+  <%= @building.borough %>
+</p>
 
-<% @access = @building.get_access @building.address %>
+<% @access = @building.get_access(@building.address, @building.borough) %>
 <% @access.each do |m| %>
 <li> <%= m["created_date"] + "---" + m["complaint_type"] + "----" + m["descriptor"] %> </li>
 <%end%>
@@ -22,7 +26,6 @@
 </p>
 </br> 
 
-
 </br></br>
 
 <%= form_for(@building) do |f| %>
@@ -38,9 +41,11 @@
     <%= radio_button_tag(:rating, "5") %>
   <%= label_tag(:rating, "5") %>
 
-
   <div class="actions">
     <%= f.submit "Rate"%>
   </div>
 <% end %>
-<%= link_to 'Back', buildings_path %>
+
+</br></br>
+
+<%= link_to 'Search More', root_path %>
