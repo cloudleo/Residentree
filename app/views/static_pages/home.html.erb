@@ -12,6 +12,17 @@
       <%= form_tag("/buildings") do %>
       <%= label_tag('building[address]', "Address") %>
       <%= text_field_tag('building[address]') %>
+
+      <%= label_tag('building[borough]', "Borough") %>
+   <select name = "building[borough]" id = "borough_address">
+      <option disabled selected> -- Select a Borough -- </option>
+      <option value = "Brooklyn">Brookyln</option>
+      <option value = "Bronx">Bronx</option>
+      <option value = "Manhattan">Manhattan</option>
+      <option value = "Queens">Queens</option>
+      <option value = "Staten Island">Staten Island</option>
+  </select>
+
       <%= submit_tag "Submit" %>
       <% end %>
     </p>
