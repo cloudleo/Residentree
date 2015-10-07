@@ -24,18 +24,16 @@ class BuildingsController < ApplicationController
       # Need to return an error message
     else
       # Need to check if it exist
-      # building exists in our system
       
-      if (!(@building = Building.find_by address: @address).nil? and @building.borough == @borough)
-        # load building page
+      if !(@building = Building.where(borough: @borough, address: @address)).empty?
+        # building exists in our system
+        @building = @building.first
         redirect_to @building
       else
-        # create a new building
         @building = Building.new(building_params)
         @building.save
         redirect_to @building
-      end
-      
+      end    
     end
   end
 
