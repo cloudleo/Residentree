@@ -5,6 +5,13 @@
   <%= @building.address %>
 </p>
 
+<% @access = @building.get_access @building.address %>
+<% @access.each do |m| %>
+<li> <%= m["created_date"] + "---" + m["complaint_type"] + "----" + m["descriptor"] %> </li>
+<%end%>
+
+
+
 <p>
   <strong>Rating </strong>
   <% if @building.rating_count.nil? or @building.rating_count < 1 %>
@@ -13,15 +20,13 @@
   <%= (@building.rating_sum.to_f / @building.rating_count).round(2) %>
   <% end %>
 </p>
-binding.pry
 </br> 
 
-<%= link_to 'Back', buildings_path %>
 
 </br></br>
 
 <%= form_for(@building) do |f| %>
-	<strong>Rate this building: </strong>
+  <strong>Rate this building: </strong>
   <%= radio_button_tag(:rating, "1") %>
   <%= label_tag(:rating, "1") %>
     <%= radio_button_tag(:rating, "2") %>
@@ -38,3 +43,4 @@ binding.pry
     <%= f.submit "Rate"%>
   </div>
 <% end %>
+<%= link_to 'Back', buildings_path %>

@@ -13,17 +13,17 @@ class BuildingsController < ApplicationController
   # POST /buildings
   def create
 
-    address = building_params["address"]
+    @address = building_params["address"]
 
     # user did not enter anything in this field
-    if address.empty?
+    if @address.empty?
       redirect_to ('/')
       # Need to return an error message
       # Need to check if it exist
     else
       # building exists in our system
       
-      if !(@building = Building.find_by address: address).nil?
+      if !(@building = Building.find_by address: @address).nil?
         # load building page
         redirect_to @building
       else
@@ -38,7 +38,7 @@ class BuildingsController < ApplicationController
 
   # PATCH/PUT /buildings/1
   def update
-    binding.pry
+   
     if @building.rating_count.nil?
       @building.rating_count = 1
       @building.rating_sum = params['rating'].to_i
