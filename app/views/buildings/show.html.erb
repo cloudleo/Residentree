@@ -1,15 +1,23 @@
 <p id="notice"><%= notice %></p>
 
+<% @access = @building.get_access @building.address, @building.borough %>
+<%@zipcode = @access[0]["incident_zip"]%>
 <p>
-  <strong>Address:</strong>
-  <%= @building.address %>
+ <strong>Address:</strong>
+<%=  @building.address.upcase %>
+</p>
+<p>
+<strong>Zipcode:</strong>
+ <a href =<%="http://www.city-data.com/zips/#{@zipcode}.html"%> ><%= @zipcode %></a>
 </p>
 <p>
   <strong>Borough:</strong>
   <%= @building.borough %>
 </p>
 
-<% @access = @building.get_access(@building.address, @building.borough) %>
+
+
+
 <% @access.each do |m| %>
 <li> <%= m["created_date"] + "---" + m["complaint_type"] + "----" + m["descriptor"] %> </li>
 <%end%>
@@ -26,7 +34,9 @@
 </p>
 </br> 
 
-</br></br>
+
+
+
 
 <%= form_for(@building) do |f| %>
   <strong>Rate this building: </strong>
