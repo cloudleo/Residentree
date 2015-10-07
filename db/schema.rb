@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20151006135712) do
 
   create_table "buildings", force: :cascade do |t|
     t.string   "address"
+    t.string   "borough"
     t.integer  "rating_sum"
     t.integer  "rating_count"
     t.datetime "created_at",   null: false

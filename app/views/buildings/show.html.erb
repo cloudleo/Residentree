@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<% @access = @building.get_access @building.address %>
+<% @access = @building.get_access @building.address, @building.borough %>
 <%@zipcode = @access[0]["incident_zip"]%>
 <p>
  <strong>Address:</strong>
@@ -10,6 +10,13 @@
 <strong>Zipcode:</strong>
  <a href =<%="http://www.city-data.com/zips/#{@zipcode}.html"%> ><%= @zipcode %></a>
 </p>
+<p>
+  <strong>Borough:</strong>
+  <%= @building.borough %>
+</p>
+
+
+
 
 <% @access.each do |m| %>
 <li> <%= m["created_date"] + "---" + m["complaint_type"] + "----" + m["descriptor"] %> </li>
@@ -30,6 +37,7 @@
 
 
 
+
 <%= form_for(@building) do |f| %>
   <strong>Rate this building: </strong>
   <%= radio_button_tag(:rating, "1") %>
@@ -43,9 +51,11 @@
     <%= radio_button_tag(:rating, "5") %>
   <%= label_tag(:rating, "5") %>
 
-
   <div class="actions">
     <%= f.submit "Rate"%>
   </div>
 <% end %>
-<%= link_to 'Back', buildings_path %>
+
+</br></br>
+
+<%= link_to 'Search More', root_path %>
