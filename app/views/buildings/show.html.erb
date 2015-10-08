@@ -7,7 +7,7 @@
 <%=  @building.address.upcase %>
 </p>
 <p>
-<strong>Zipcode:</strong>
+<strong>Zipcode Info:</strong>
   <% if @zipcode.nil? %>
   let's fix this with geodata with @zipcode here
   <%= @zipcode %></a>
@@ -69,3 +69,16 @@
 </br></br>
 
 <%= link_to 'Search More', root_path %>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'residentree';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
