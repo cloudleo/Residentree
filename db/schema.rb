@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20151006135712) do
     t.string   "borough"
     t.integer  "rating_sum"
     t.integer  "rating_count"
+    t.string   "slug"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

@@ -3,6 +3,9 @@ require "json"
 require 'pry'
 
 class Building < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :address, use: :slugged
+
   validates :address, :presence => {:message => "Please enter an address."}
   validates :borough, :presence => {:message => "Please choose a borough."}
   
