@@ -2,7 +2,7 @@
 
 ## Description
 
-Add a short description of your app.
+This is the Yelp for searching, reviewing, 
 
 ## Screenshots
 

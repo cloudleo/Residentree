@@ -5,7 +5,7 @@ class CreateBuildings < ActiveRecord::Migration
       t.string :borough
       t.integer :rating_sum
       t.integer :rating_count
-
+      t.string :slug
       t.timestamps null: false
     end
   end

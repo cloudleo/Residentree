@@ -1,6 +1,8 @@
 
 <% @access = @building.get_access @building.address, @building.borough %>
+<% @zipcode = AddressValidation.get_zip(@building.address, @building.borough) %>
 
+<<<<<<< HEAD
 <% @latitude = @access[0]["latitude"] %>
 <% @longitude = @access[0]["longitude"] %>
 
@@ -23,14 +25,17 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </body>
 
 <%@zipcode = @access[0]["incident_zip"] if !@access.empty? and @access[0]["borough"] == @building.borough.upcase %>
+=======
+>>>>>>> 94847bad764bf66dd45779b5e121ee68f63076a6
 <p>
  <strong>Address:</strong>
 <%=  @building.address.upcase %>
 </p>
 <p>
+
 <strong>Zipcode Info:</strong>
   <% if @zipcode.nil? %>
-  let's fix this with geodata with @zipcode here
+    We could not locate the zipcode.
   <%= @zipcode %></a>
   <% else %>
  <a href =<%="http://www.city-data.com/zips/#{@zipcode}.html"%> ><%= @zipcode %></a>
@@ -43,7 +48,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 
 <% no_complaints_were_found = true %>
-
+<strong>RECORDED 311 COMPLAINTS:</strong>
 <% @access.each do |m| %>
   <% if m["borough"] == @building.borough.upcase %>
     <li> <%= m["created_date"] + "---" + m["complaint_type"] + "----" + m["descriptor"] %> </li>
