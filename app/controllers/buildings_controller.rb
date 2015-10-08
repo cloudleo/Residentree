@@ -12,9 +12,9 @@ class BuildingsController < ApplicationController
 
   # POST /buildings
   def create
-
     @address = building_params["address"]
     @borough = building_params["borough"]
+    
 
     borough_true = true if (@borough == "Brooklyn" or @borough == "Bronx" or @borough == "Manhattan" or @borough == "Queens" or @borough == "Staten Island") 
 

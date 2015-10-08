@@ -16,7 +16,7 @@ class Building < ActiveRecord::Base
 
   def get_access(address, borough)
     # binding.pry
-     return self.get_json(self.get_result(address, borough))
+     return self.get_json(self.get_result(address.upcase, borough))
      end
 end
 

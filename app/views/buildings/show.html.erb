@@ -7,6 +7,8 @@
 <%=  @building.address.upcase %>
 </p>
 <p>
+
+
 <strong>Zipcode:</strong>
   <% if @zipcode.nil? %>
   let's fix this with geodata with @zipcode here
@@ -22,7 +24,7 @@
 
 
 <% no_complaints_were_found = true %>
-
+<strong>RECORDED 311 COMPLAINTS:</strong>
 <% @access.each do |m| %>
   <% if m["borough"] == @building.borough.upcase %>
     <li> <%= m["created_date"] + "---" + m["complaint_type"] + "----" + m["descriptor"] %> </li>
