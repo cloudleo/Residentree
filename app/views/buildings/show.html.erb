@@ -7,6 +7,7 @@
 <%=  @building.address.upcase %>
 </p>
 <p>
+
 <strong>Zipcode Info:</strong>
   <% if @zipcode.nil? %>
     We could not locate the zipcode.
@@ -22,7 +23,7 @@
 
 
 <% no_complaints_were_found = true %>
-
+<strong>RECORDED 311 COMPLAINTS:</strong>
 <% @access.each do |m| %>
   <% if m["borough"] == @building.borough.upcase %>
     <li> <%= m["created_date"] + "---" + m["complaint_type"] + "----" + m["descriptor"] %> </li>

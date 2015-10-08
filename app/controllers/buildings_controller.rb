@@ -12,9 +12,9 @@ class BuildingsController < ApplicationController
 
   # POST /buildings
   def create
-
     @address = building_params["address"]
     @borough = building_params["borough"]
+    
 
     borough_true = true if (@borough == "Brooklyn" or @borough == "Bronx" or @borough == "Manhattan" or @borough == "Queens" or @borough == "Staten Island") 
 
@@ -70,7 +70,7 @@ class BuildingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_building
-      @building = Building.find(params[:id])
+      @building = Building.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
