@@ -1,7 +1,7 @@
 
 <% @access = @building.get_access @building.address, @building.borough %>
+<% @zipcode = AddressValidation.get_zip(@building.address, @building.borough) %>
 
-<%@zipcode = @access[0]["incident_zip"] if !@access.empty? and @access[0]["borough"] == @building.borough.upcase %>
 <p>
  <strong>Address:</strong>
 <%=  @building.address.upcase %>
@@ -10,7 +10,7 @@
 
 <strong>Zipcode Info:</strong>
   <% if @zipcode.nil? %>
-  let's fix this with geodata with @zipcode here
+    We could not locate the zipcode.
   <%= @zipcode %></a>
   <% else %>
  <a href =<%="http://www.city-data.com/zips/#{@zipcode}.html"%> ><%= @zipcode %></a>
