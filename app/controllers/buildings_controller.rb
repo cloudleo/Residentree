@@ -1,6 +1,7 @@
 class BuildingsController < ApplicationController
   before_action :set_building, only: [:show, :edit, :update, :destroy]
-
+  require "nokogiri"
+  require "open-uri"
   # GET /buildings
   def index
     @buildings = Building.all
