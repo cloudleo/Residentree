@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'nokogiri'
+
 class BuildingsController < ApplicationController
   before_action :set_building, only: [:show, :edit, :update, :destroy]
 
