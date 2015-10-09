@@ -1,4 +1,37 @@
+<style type="text/css">
+  #googleMap {
+    float: left;
+    margin-left: 0px;
+    margin-right: 25px;
+    width:100%;
+    height: 325px;
+  }
+  #info {
+    float: right;
+    width: auto;
+    color: black;
+    background-color: rgba(255,255,255,0.8);
+    height: auto;
+    font-size: 2em;
+    width: 100%;
+  }
+  #top {
+    /*background-image: url(http://img12.deviantart.net/6e54/i/2011/049/8/6/web_page_background_by_badmagicks-d39uktd.jpg);*/
+    background-size: 100%;
+  }
 
+  body {
+    /*background-color: black;*/
+    background-image: url(http://2.bp.blogspot.com/-2lX0aEfFVzY/UsgCJ--v5II/AAAAAAAABLA/cHFm49-33xw/s1600/new-york-city-buliding-black-and-white-photography-0c.jpg);
+    background-size: 100%;
+    background-attachment: fixed;
+  }
+
+  #disqus_thread {
+    /*background-color: rgba(255,255,255,0.2);*/
+    /*background-color: white;*/
+  }
+</style>
 <% @access = @building.get_access @building.address, @building.borough %>
 <% @zipcode = AddressValidation.get_zip(@building.address, @building.borough) %>
 
@@ -23,11 +56,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
 <body>
-<div id="googleMap" style="width:500px;height:380px;"></div>
-</body>
+<div id='top'>
+<div id="googleMap"></div>
 
 <%@zipcode = @access[0]["incident_zip"] if !@access.empty? and @access[0]["borough"] == @building.borough.upcase %>
-
+<div id='info'>
 <p>
  <strong>Address:</strong>
 <%=  @building.address.upcase %>
@@ -103,6 +136,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </br></br>
 
 <%= link_to 'Search More', root_path %>
+</div>
+</div>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
@@ -116,3 +151,4 @@ google.maps.event.addDomListener(window, 'load', initialize);
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</body>
