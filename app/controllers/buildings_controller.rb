@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 require 'Nokogiri'
 require 'open-uri'
+=======
+require 'open-uri'
+require 'nokogiri'
+
+>>>>>>> acbd661a5df3d5db27e574b480e4b67fe4c4144d
 class BuildingsController < ApplicationController
   before_action :set_building, only: [:show, :edit, :update, :destroy]
 
