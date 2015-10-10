@@ -36,6 +36,14 @@
     /*background-color: rgba(255,255,255,0.2);*/
     /*background-color: white;*/
   }
+
+  #head {
+    position: relative;
+    float: left;
+    margin-top: -50px;
+    margin-bottom: 20px;
+    font-family: Copperplate, 'Copperplate Gothic Light', fantasy;
+  }
 </style>
 <% @access = @building.get_access @building.address, @building.borough %>
 <% @zipcode = AddressValidation.get_zip(@building.address, @building.borough) %>
@@ -61,6 +69,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
 <body>
+<div id = 'head'><h1>RESIDENTREE</h1></div>
 <div id='top'>
 <div id="googleMap"></div>
 
