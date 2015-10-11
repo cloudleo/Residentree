@@ -4,6 +4,9 @@
     background-color: rgba(255,255,255,0.3);
     font-family: Copperplate, 'Copperplate Gothic Light', fantasy;
   }
+  .alert{
+    color: "red";
+  }
 
   h1 {
     font-size: 40px;
@@ -36,6 +39,9 @@
       Find, review, and talk about your building!
     </p>
     
+     <% if flash.alert %>
+    <div class="alert"><%= flash.alert%></div>
+  <% end %>
     <p>
       <%= form_tag("/buildings") do %>
       <%= label_tag('building[address]', "Address") %>

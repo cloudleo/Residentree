@@ -27,6 +27,7 @@ class BuildingsController < ApplicationController
       # user did not enter anything in these fields
       redirect_to ('/')
       # Need to return an error message
+      flash.alert = "Please input a correct address"
     else
       # Need to check if it exist
 
@@ -34,6 +35,7 @@ class BuildingsController < ApplicationController
 
       if zipcode.empty?
         redirect_to ('/')
+       flash.alert = "Please input a correct address"
       else
       
         if !(@building = Building.where(borough: @borough, address: @address)).empty?

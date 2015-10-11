@@ -10,7 +10,6 @@ class Building < ActiveRecord::Base
   validates :address, :presence => {:message => "Please enter an address."}
   validates :borough, :presence => {:message => "Please choose a borough."}
   
-  # binding.pry
   
 
   # def get_result(address, borough)
@@ -21,11 +20,10 @@ class Building < ActiveRecord::Base
   #   return JSON.load(open(url))
   # end
 
-  def get_access(address, borough)
-    # binding.pry
-  client = SODA::Client.new({:domain => "data.cityofnewyork.us", :app_token => "YWyMr1uyrgmiYaHafjeDzhk65"})
-  response = client.get("fhrw-4uyv", {"$order" => "created_date", "$limit" => 30, :incident_address => address, :borough => borough})
-     # 
+     def get_access(address, borough)   
+         client = SODA::Client.new({:domain => "data.cityofnewyork.us", :app_token => "YWyMr1uyrgmiYaHafjeDzhk65"})
+         response = client.get("fhrw-4uyv", {"$order" => "created_date DESC", "$limit" => 30, :incident_address => address, :borough => borough})
+     
      return response
      end
 end
