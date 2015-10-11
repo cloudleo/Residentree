@@ -45,7 +45,7 @@
     font-family: Copperplate, 'Copperplate Gothic Light', fantasy;
   }
 </style>
-<% @access = @building.get_access @building.address, @building.borough %>
+<% @access = @building.get_access @building.address.upcase, @building.borough.upcase %>
 <% @zipcode = AddressValidation.get_zip(@building.address, @building.borough) %>
 
 <% @latitude = @access[0]["latitude"] %>
