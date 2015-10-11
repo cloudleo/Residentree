@@ -1,3 +1,15 @@
+<% if @building.borough == 'Manhattan' %>
+  <% @backgroundurl = 'http://2.bp.blogspot.com/-2lX0aEfFVzY/UsgCJ--v5II/AAAAAAAABLA/cHFm49-33xw/s1600/new-york-city-buliding-black-and-white-photography-0c.jpg' %>
+  <% elsif @building.borough == 'Brooklyn' %>
+    <% @backgroundurl = 'http://intrestingimages.com/images/brooklyn-background/brooklyn-background-05.jpg' %>
+  <% elsif @building.borough == 'Queens' %>
+    <% @backgroundurl = 'http://www.mycoolbackgrounds.com/backgrounds/24933/Unisphere,%201964%20Worlds%20Fair,%20Flushing,%20New%20York.jpg' %>
+  <% elsif @building.borough == 'Bronx' %>
+    <% @backgroundurl = 'http://i986.photobucket.com/albums/ae348/ale-x_photo/Black%20and%20white/lugoart113.jpg' %>
+  <% elsif @building.borough == 'Staten Island' %>
+    <% @backgroundurl = 'http://images.fineartamerica.com/images-medium-large-5/staten-island-ferry-in-black-and-white-rob-hans.jpg' %>
+<% end %>
+
 <style type="text/css">
   #googleMap {
     margin-left: 0px;
@@ -16,25 +28,12 @@
     font-family: Copperplate, 'Copperplate Gothic Light', fantasy;
   }
   #top {
-    /*background-image: url(http://img12.deviantart.net/6e54/i/2011/049/8/6/web_page_background_by_badmagicks-d39uktd.jpg);*/
     background-size: 100%;
-  }
-
-  body {
-    /*background-color: black;*/
-    background-image: url(http://2.bp.blogspot.com/-2lX0aEfFVzY/UsgCJ--v5II/AAAAAAAABLA/cHFm49-33xw/s1600/new-york-city-buliding-black-and-white-photography-0c.jpg);
-    background-size: 100%;
-    background-attachment: fixed;
   }
 
   table {
     margin-left: auto;
     margin-right: auto;
-  }
-
-  #disqus_thread {
-    /*background-color: rgba(255,255,255,0.2);*/
-    /*background-color: white;*/
   }
 
   #head {
@@ -44,8 +43,16 @@
     margin-bottom: 20px;
     font-family: Copperplate, 'Copperplate Gothic Light', fantasy;
   }
+
+  body {
+    background-image: url(<%= @backgroundurl %>);
+    background-size: 100%;
+    background-attachment: fixed;
+  }
 </style>
+
 <% @access = @building.get_access @building.address.upcase, @building.borough.upcase %>
+
 <% @zipcode = AddressValidation.get_zip(@building.address, @building.borough) %>
 
 <% @latitude = @access[0]["latitude"] %>
@@ -68,7 +75,7 @@ marker.setMap(map);
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
-<body>
+<body id = "background">
 <div id = 'head'><h1>RESIDENTREE</h1></div>
 <div id='top'>
 <div id="googleMap"></div>
