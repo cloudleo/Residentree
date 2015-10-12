@@ -31,13 +31,27 @@ class Building < ActiveRecord::Base
           end
         address.join(" ")
        elsif address.upcase.include? "AVE"||"AVE."
-        address = address.gsub "AVE", "AVENUE"
+        address = address.split(" ").map! do |m|
+            if m == "AVE" || m == "AVE."
+              m = "AVENUE"
+            else
+              m = m
+            end
+          end
+        address.join(" ")
       elsif address.upcase.include? "DR"||"DR."
-        address = address.gsub "DR", "DRIVE"
+        address = address.split(" ").map! do |m|
+            if m == "DR" || m == "DR."
+              m = "DRIVE"
+            else
+              m = m
+            end
+          end
+        address.join(" ")
       else
         address
       end
-      
+     
          client = SODA::Client.new({:domain => "data.cityofnewyork.us", :app_token => "YWyMr1uyrgmiYaHafjeDzhk65"})
          response = client.get("fhrw-4uyv", {"$order" => "created_date DESC", "$limit" => 30, "$q" => address, :borough => borough})
      
