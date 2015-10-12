@@ -21,8 +21,25 @@ class Building < ActiveRecord::Base
   # end
 
      def get_access(address, borough)   
+      if address.upcase.include? "ST"||"ST."
+       address = address.split(" ").map! do |m|
+            if m == "ST" || m == "ST."
+              m = "STREET"
+            else
+              m = m
+            end
+          end
+        address.join(" ")
+       elsif address.upcase.include? "AVE"||"AVE."
+        address = address.gsub "AVE", "AVENUE"
+      elsif address.upcase.include? "DR"||"DR."
+        address = address.gsub "DR", "DRIVE"
+      else
+        address
+      end
+      
          client = SODA::Client.new({:domain => "data.cityofnewyork.us", :app_token => "YWyMr1uyrgmiYaHafjeDzhk65"})
-         response = client.get("fhrw-4uyv", {"$order" => "created_date DESC", "$limit" => 30, :incident_address => address, :borough => borough})
+         response = client.get("fhrw-4uyv", {"$order" => "created_date DESC", "$limit" => 30, "$q" => address, :borough => borough})
      
      return response
      end
