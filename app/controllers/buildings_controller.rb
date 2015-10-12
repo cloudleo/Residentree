@@ -27,6 +27,7 @@ class BuildingsController < ApplicationController
       # user did not enter anything in these fields
       redirect_to ('/')
       # Need to return an error message
+      flash.alert = "Please input a correct address"
     else
       # Need to check if it exist
 
@@ -34,6 +35,7 @@ class BuildingsController < ApplicationController
 
       if zipcode.empty?
         redirect_to ('/')
+       flash.alert = "Please input a correct address"
       else
       
         if !(@building = Building.where(borough: @borough, address: @address)).empty?
@@ -89,6 +91,7 @@ class AddressValidation
   def self.get_zip (address, borough)
       address_xml = address.strip.gsub(/[ ]/, '%20')
       xml = "http://production.shippingapis.com/ShippingAPITest.dll?API=Verify%20&XML=%3CAddressValidateRequest%20USERID=%22055FLATI0094%22%3E%3CAddress%20ID=%221%22%3E%3CAddress1%3E%20%3C/Address1%3E%3CAddress2%3E" + address_xml + "%3C/Address2%3E%3CCity%3E" + borough + "%3C/City%3E%20%3CState%3ENY%3C/State%3E%3CZip5%3E06371%3C/Zip5%3E%3CZip4%3E%3C/Zip4%3E%3C/Address%3E%20%3C/AddressValidateRequest%3E"
+    
       doc = Nokogiri::XML(open(xml))
       return doc.xpath("//Zip5").text
   end
