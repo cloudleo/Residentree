@@ -51,7 +51,7 @@ class Building < ActiveRecord::Base
       else
         address
       end
-      binding.pry
+     
          client = SODA::Client.new({:domain => "data.cityofnewyork.us", :app_token => "YWyMr1uyrgmiYaHafjeDzhk65"})
          response = client.get("fhrw-4uyv", {"$order" => "created_date DESC", "$limit" => 30, "$q" => address, :borough => borough})
      
