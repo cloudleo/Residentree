@@ -50,11 +50,17 @@
     background-size: 100%;
     background-attachment: fixed;
   }
+
+  #disqus_thread {
+    background-color: rgba(255,255,255,0.8);
+  }
 </style>
 
 <% @access = @building.get_access @building.address.upcase, @building.borough.upcase %>
 
 <% @zipcode = AddressValidation.get_zip(@building.address, @building.borough) %>
+
+<% if !@access.empty? %>
 
 <% @latitude = @access[0]["latitude"] %>
 <% @longitude = @access[0]["longitude"] %>
@@ -80,6 +86,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <div id = 'head'><h1>RESIDENTREE</h1></div>
 <div id='top'>
 <div id="googleMap"></div>
+
+<% end %>
 
 <%@zipcode = @access[0]["incident_zip"] if !@access.empty? and @access[0]["borough"] == @building.borough.upcase %>
 <div id='info'>
@@ -160,7 +168,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <%= link_to 'Search More', root_path %>
 </div>
 </div>
-<div id="disqus_thread"></div>
+<div id="disqus_thread">
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = 'residentree';
@@ -173,4 +181,5 @@ google.maps.event.addDomListener(window, 'load', initialize);
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
 </body>
